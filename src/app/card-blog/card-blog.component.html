@@ -1,0 +1,33 @@
+<mat-card
+  style="
+        background-color:{{ blog.upVote >= blog.downVote ? '#73c7af' : 'red' }}"
+>
+  <mat-card-title>
+    <a (click)="changeViewInner(blog)">
+      {{ blog.title }}
+    </a>
+  </mat-card-title>
+  <mat-card-subtitle>{{ blog.author }}</mat-card-subtitle>
+  <mat-card-content>
+    <p
+      [innerText]="
+        blog.content | slice: 0:blog.content.slice(0, 50).lastIndexOf(' ')
+      "
+    ></p>
+    <p>
+      {{
+        blog.content
+          | slice
+            : blog.content.slice(40, 50).lastIndexOf(" ")
+            : blog.content.slice(50, 100).lastIndexOf(" ")
+      }}
+      <span>...</span>
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="blogIncrement(blog.id)">upvote {{ blog.upVote }}</button>
+    <button (click)="blogDecrement(blog.id)">
+      downvote {{ blog.downVote }}
+    </button>
+  </mat-card-actions>
+</mat-card>

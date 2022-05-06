@@ -1,0 +1,19 @@
+<mat-grid-list
+  cols="1"
+  rowHeight="200px"
+  column-width="100px"
+  *ngIf="!displayCurrent"
+>
+  <app-search-blog (searchTerm)="searchTerm($event)"></app-search-blog>
+  <mat-grid-tile class="my-grid-tile" *ngFor="let blog of filteredBlogs">
+    <app-card-blog
+      [blog]="blog"
+      (increment)="increment($event)"
+      (decrement)="decrement($event)"
+      (changeView)="changeView($event)"
+    >
+    </app-card-blog>
+  </mat-grid-tile>
+</mat-grid-list>
+<app-blog-display *ngIf="displayCurrent" [currentBlog]="currentBlog">
+</app-blog-display>
